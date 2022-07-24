@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+{% for message in app.flashes('success')%}
+        <div class="alert alert-success">
+            {{message}}
+        </div>
+    {% endfor %}
+    <h1>{{ 'edit post'|trans({'%id%': post.id}) }}</h1>
+
+    {{ include('admin/blog/_form.html.twig', {
+        form: form,
+        button_label: 'save'|trans,
+        include_back_to_home_link: true,
+    }, with_context = false) }}
+
+{% endblock %}
+
+{% block sidebar %}
+    <div class="section">
+        <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-eye" aria-hidden="true"></i> {{ 'show post'|trans }}
+        </a>
+    </div>
+
+    <div class="section actions">
+        {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
+    </div>
+
+    {{ parent() }}
+
+
+{% endblock %}

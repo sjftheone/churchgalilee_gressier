@@ -1,0 +1,481 @@
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="Coordonnees-tab" data-toggle="tab" href="#Coordonnees" role="tab" aria-controls="Coordonnees" aria-selected="true">Coordonnées</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="Position_Eglise-tab" data-toggle="tab" href="#Position_Eglise" role="tab" aria-controls="Position_Eglise" aria-selected="false">Baptême</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="Integration-tab" data-toggle="tab" href="#Integration" role="tab" aria-controls="Integration" aria-selected="true">Intégration</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="photo-tab" data-toggle="tab" href="#photo" role="tab" aria-controls="photo" aria-selected="false">Photo</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" id="Evenement-tab" data-toggle="tab" href="#Evenement" role="tab" aria-controls="Evenement" aria-selected="false">Evénements</a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="Coordonnees" role="tabpanel" aria-labelledby="Coordonnees-tab">
+       {#  <p ><h5> Informations Personnelles</h5></p> #}
+        <p></p>
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="row">
+            <div class="col">
+                 <div class="alert alert-secondary alert-dismissible fade show" > {{form_errors(form.nom)}} {{form_errors(form.phonePersonnel)}} {{form_errors(form.adresse)}}{{form_errors(form.dateNaissance)}}{{form_errors(form.prenom)}}{{form_errors(form.imageFile)}}</div>
+                
+            </div>
+        </div>
+       
+        
+        
+       
+<!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Photo de {{ personne.nom }} {{ personne.prenom }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+           {% if personne.imageName%}
+     <img src="{{vich_uploader_asset(personne,'imageFile') }}" alt="card img" style="width:100%; height:auto;">
+	 {% else %}
+	 <img src="{{ asset('/images/properties/Photo_not_Found.jpg')}}" alt="card img" style="width:100%; height:auto;">
+	 {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+    <table class="table table-striped table-middle-aligned table-sm">
+       
+        <tbody>        
+            <tr>			 
+                <td>{{ form_label(form.nom) }}</td>
+                <td>{{ form_widget(form.nom)}}</td>
+                 <td>{{ form_label(form.prenom) }}</td>
+                <td>{{ form_widget(form.prenom) }}</td>
+                 <td rowspan="3" style="width: 10%">
+
+<a class="bg-circle bg-primary"  data-toggle="modal" href="#exampleModal">
+    {% if personne.imageName%}
+     <img src="{{vich_uploader_asset(personne,'imageFile') }}" alt="card img" style="width:100%; height:auto;">
+	 {% else %}
+	 <img src="{{ asset('/images/properties/Photo_not_Found.jpg')}}" alt="card img" style="width:100%; height:auto;">
+	 {% endif %}
+
+</a>
+                 </td>               
+	        </tr>
+			
+             <tr>			 
+                <td>{{ form_label(form.sexe) }}</td>
+                <td>{{ form_widget(form.sexe) }}</td>
+				 <td>{{ form_label(form.civilite) }}</td>
+                <td>{{ form_widget(form.civilite) }}</td>
+	        </tr>
+			
+             <tr>			 
+                <td>{{ form_label(form.dateNaissance) }}</td>
+                <td>{{ form_widget(form.dateNaissance) }} mm/jj/aa</td>
+				 <td>{{ form_label(form.lieuNaissance) }}</td>
+                <td>{{ form_widget(form.lieuNaissance) }}</td>
+	        </tr>
+			
+
+                         <tr>			 
+                <td>{{ form_label(form.nationalite) }}</td>
+                <td>{{ form_widget(form.nationalite) }}</td>
+				 <td>{{ form_label(form.profession) }}</td>
+                <td>{{ form_widget(form.profession) }}</td>
+	        </tr>
+
+
+             <tr>			 
+                <td>{{ form_label(form.statutMat) }}</td>
+                <td>{{ form_widget(form.statutMat) }}</td>
+				 <td>{{ form_label(form.adresse) }}</td>
+                <td>{{ form_widget(form.adresse) }}</td>
+	        </tr>
+
+            <tr>			 
+                <td>{{ form_label(form.codePostal) }}</td>
+                <td>{{ form_widget(form.codePostal) }}</td>
+				 <td>{{ form_label(form.ville) }}</td>
+                <td>{{ form_widget(form.ville) }}</td>
+	        </tr>
+
+
+               <tr>			 
+                <td>{{ form_label(form.phoneHome) }}</td>
+                <td>{{ form_widget(form.phoneHome) }}</td>
+				 <td>{{ form_label(form.phonePersonnel) }}</td>
+                <td>{{ form_widget(form.phonePersonnel) }}</td>
+	          </tr>
+
+
+               <tr>			 
+                <td>{{ form_label(form.phoneTravail) }}</td>
+                <td>{{ form_widget(form.phoneTravail) }}</td>
+				 <td>{{ form_label(form.email) }}</td>
+                <td>{{ form_widget(form.email) }}</td>
+	          </tr>
+
+                <tr>			 
+                <td>{{ form_label(form.infosAdd) }}</td>
+                <td>{{ form_widget(form.infosAdd) }}</td>
+				
+                 <td>{{ form_label(form.imageFile) }}</td>
+                <td>{{ form_widget(form.imageFile) }}</td>
+	          </tr>
+
+
+           
+
+
+        </tbody>
+    </table>
+
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save" aria-hidden="true"></i> Save changesss
+        </button>
+
+        {% if test=='new' %}
+            <div class="col-12 col-md-8 col-lg-9">
+                <p></p>
+                {{form_row(form.saveAndCreateNew)}}
+            </div>
+        {% endif %}
+        {{ form_end(form) }}
+    </div>
+
+
+    {# ######################################################## #}
+
+ {% if test =='new' %}
+    <div class="tab-pane fade" id="Position_Eglise" role="tabpanel" aria-labelledby="Position_Eglise-tab">
+    {#     {{ form_start(form1)}} #}
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form1.dateBapteme) }}</p>
+            </div>
+            <div class="col" id="some-custom-id"> {{ form_widget(form1.dateBapteme) }}</div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form1.lieu) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form1.lieu) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form1.baptiserPar) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form1.baptiserPar) }}
+            </div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">xx </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                cc
+            </div>
+        </div>
+
+        {{ form_end(form1) }}
+    </div>
+
+    <div class="tab-pane fade" id="Integration" role="tabpanel" aria-labelledby="Integration-tab">
+        {#     {{ form_start(form1)}} #}
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_integration.dateIn) }}</p>
+            </div>
+            <div class="col" id="some-custom-id"> {{ form_widget(form_integration.dateIn) }}</div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_integration.infosIn) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form_integration.infosIn) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_integration.dateOut) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form_integration.dateOut) }}
+            </div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_integration.infosOut) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_label(form_integration.infosOut) }}
+            </div>
+
+        </div>
+
+        {{ form_end(form_integration) }}
+    </div>
+
+    <div class="tab-pane fade" id="Evenement" role="tabpanel" aria-labelledby="Evenement-tab">
+        {#     {{ form_start(form1)}} #}
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_evenement.eventDate) }}</p>
+            </div>
+            <div class="col" id="some-custom-id"> {{ form_widget(form_evenement.eventDate) }}</div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_evenement.eventType) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form_evenement.eventType) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_evenement.eventLieu) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_widget(form_evenement.eventLieu) }}
+            </div>
+
+            <div class="col">
+                <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form_evenement.eventInfos) }} </p>
+            </div>
+            <div class="col" id="some-custom-id">
+                {{ form_label(form_evenement.eventInfos) }}
+            </div>
+        </div>
+        {{ form_end(form_evenement) }}
+    </div>
+
+
+    {% elseif test =='edit' %}
+        <div class="tab-pane fade" id="Position_Eglise" role="tabpanel" aria-labelledby="Position_Eglise-tab">
+        
+            <table class="table table-striped table-middle-aligned">
+                <thead>
+                <tr>
+                    <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Date Baptême</th>
+                    <th scope="col">Lieu de Baptême </th>
+                    <th scope="col">Baptisé par</th>
+                    <th scope="col" class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i> Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for bapteme in baptemes %}
+                    <tr>
+
+                        <td>{{ bapteme.dateBapteme |date('d-m-Y')}}</td>
+                        <td>{{bapteme.lieu}}</td>
+                        <td>{{ bapteme.baptiserPar}}</td>
+
+
+                        <td class="text-right">
+                            <div class="item-actions">
+                                <a href="{{ path('admin_bapteme_show', {id: bapteme.id}) }}" class="btn btn-sm btn-success">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Show
+                                </a>
+
+                                <a href="{{ path('admin_bapteme_edit', {id: bapteme.id}) }}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> edit
+                                </a>                               
+                                    {{ include('admin/bapteme/_delete_form.html.twig', {bapteme: bapteme}, with_context = false) }}
+                                
+
+
+
+
+
+
+
+
+
+                                
+
+
+
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+
+                {% else %}
+                    <tr>
+                        <td colspan="4" align="center">Aucun Membre found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="section actions"  >
+                <a href="{{ path('admin_bapteme_new',{id: personne.id})}}" class="btn btn-lg btn-block btn-success">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Nouveau bapteme
+                </a>
+            </div>
+
+
+
+            </div>
+        <div class="tab-pane fade" id="Integration" role="tabpanel" aria-labelledby="contact-tab">
+            
+            <table class="table table-striped table-middle-aligned">
+                <thead>
+                <tr>
+                    <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Date d'entrée</th>
+                    <th scope="col">Infos</th>
+                    <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> Date sortie</th>
+                    <th scope="col">Motif</th>
+                    <th scope="col" class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i> Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for integration in integrations %}
+                    {% if integration.infosIn==1 %}
+			        {% set motif = "baptême" %}
+			        {% elseif integration.infosIn==2 %}
+			        {% set motif = "transfert" %}
+			        {% elseif integration.infosIn==3 %}
+			        {% set motif = "profession de foi" %}
+                    {% else %}
+			        {% set motif = "Autre" %}
+			        {% endif %}
+                    
+                    <tr>
+                        <td>{{ integration.dateIn |date('d-m-Y')}}</td>
+                       {# <td>{{ integration.dateIn |date('d-m-Y')}}</td>#}
+                        <td>{{motif}}</td>
+                        <td>{{ integration.dateOut |date('d-m-Y')}}</td>
+                        <td>{{ integration.infosOut}}</td>
+
+                        <td class="text-right">
+                            <div class="item-actions">
+                                <a href="{{ path('admin_integration_show', {id: integration.id}) }}" class="btn btn-sm btn-success">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Show
+                                </a>
+
+                                <a href="{{ path('admin_integration_edit', {id: integration.id}) }}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> edit
+                                </a>
+
+                               
+        {{ include('admin/integration/_delete_form.html.twig', {integration: integration}, with_context = false) }}
+   
+                               
+
+
+
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+
+                {% else %}
+                    <tr>
+                        <td colspan="4" align="center">Aucune integration found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="tab-pane fade" id="Evenement" role="tabpanel" aria-labelledby="Evenement-tab">
+           
+           
+            <table class="table table-striped table-middle-aligned">
+                <thead>
+                <tr>
+                    <th scope="col"><i class="fa fa-calendar" aria-hidden="true"></i> date</th>
+                    <th scope="col">Type d'évenement</th>
+                    <th scope="col">Lieu</th>
+                    <th scope="col">Infos add</th>
+                    <th scope="col" class="text-center"><i class="fa fa-cogs" aria-hidden="true"></i> Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for evenement in evenements %}
+                    <tr>
+                        <td>{{ evenement.eventDate |date('d-m-Y')}}</td>
+                        <td>{{evenement.eventType}}</td>
+                        <td>{{ evenement.eventLieu}}</td>
+                        <td>{{ evenement.eventInfos}}</td>
+
+                        <td class="text-right">
+                            <div class="item-actions">
+                                <a href="{{ path('admin_evenement_show', {id: evenement.id}) }}" class="btn btn-sm btn-success">
+                                    <i class="fa fa-eye" aria-hidden="true"></i> Show
+                                </a>
+                                <a href="{{ path('admin_evenement_edit', {id: evenement.id}) }}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> edit
+                                </a>
+
+                                  {{ include('admin/evenement/_delete_form.html.twig', {evenement: evenement}, with_context = false) }}
+   
+      
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                {% else %}
+                    <tr>
+                        <td colspan="4" align="center">Aucun evenement found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+    {% endif %}
+
+
+    {# ######################################################## #}
+    <div class="tab-pane fade" id="photo" role="tabpanel" aria-labelledby="photo-tab">
+
+        {% if personne.imageName%}
+            {# <img src="/images/properties/{{personne.imageName}}" #}
+            <img src="{{vich_uploader_asset(personne,'imageFile')}}" alt="card img" style="width:100%; height:auto;">
+        {% else %}
+            <img src="{{'/images/properties/Photo_not_Found.jpg'}}" alt="card img" style="width:100%; height:auto;">
+        {% endif %}
+
+        {#
+        {% if personne.imageName%}
+
+            <img src="{{vich_uploader_asset(personne,'imageFile')|imagine_filter('thumb')}}" alt="card img" style="width:10%; height:auto;">
+            {% else %}
+            <img src="{{'/images/properties/Photo_not_Found.jpg' |imagine_filter('thumb')}}" alt="card img" style="width:10%; height:auto;">
+            {% endif %}
+        #}
+    </div>
+
+</div>

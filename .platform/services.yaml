@@ -1,0 +1,62 @@
+# The name given to the MariaDB/MySQL service (lowercase alphanumeric only).
+db:
+    # The type of your service (mysql), which uses the forma
+    # 'type:version'. Be sure to consult the MariaDB/MySQL documentation
+    # (https://docs.platform.sh/configuration/services/mysql.html#supported-versions)
+    # when choosing a version. If you specify a version number which is not available,
+      
+    type: mariadb:10.5
+    disk: 256
+
+    
+
+    
+            # Uncomment if you want to store dfs tables in a separate database:
+            #dfs:
+            #    default_schema: dfs
+            #    privileges:
+            #        dfs: admin
+
+    # For cache you might need to increase the size of your plan if your installation has a sizeable amount of content.
+    # Check with platform.sh staff if in doubt on this, and if it would make sense to configure larger redis size here.
+    # size: L
+       # Note: If using RedisTagAwareAdapter it requires one of the 'volatile-*' eviction policies
+        # https://docs.platform.sh/configuration/services/redis.html#eviction-policy
+        # https://doc.ezplatform.com/en/latest/getting_started/requirements/
+     
+# If you wish to have a separate Redis instance for sessions, uncomment
+# this service and the corresponding relationship in .platform.app.yaml.
+#redissession:
+#    type: 'redis:5.0'
+#    configuration:
+#        maxmemory_policy: allkeys-lru
+#
+# Alternatively if you have a requirement that sessions are persisted across server/redis restarts,
+# have storage space to spare for this, and don't mind a bit slower instance type of redis
+#redissession:
+#    type: redis-persistent:5.0
+# Disk size should be bigger than Redis'  "maxmemory" setting due to https://redis.io/topics/persistence#log-rewriting.
+# The memory given to Redis depends on your plan and "size: ". Adjust "disk: " accordingly.
+#    disk: 512
+#    configuration:
+#        maxmemory_policy: allkeys-lru
+
+# If you wish to use solr, uncomment this service and the corresponding relationship in .platform.app.yaml.
+# Also, you need to generate the config using:
+# vendor/ezsystems/ezplatform-solr-search-engine/bin/generate-solr-config.sh
+# Multi core setup is currently not supported on Platform.sh. Sharding does not work as the cores are
+# unable to reach each other
+#solrsearch:
+#    type: solr:7.7
+#    disk: 512
+#    configuration:
+#        configsets:
+#            mainconfig: !archive "configsets/solr6"
+#        cores:
+#            collection1:
+#                core_properties: |
+#                    configSet=mainconfig
+#                    schema=schema.xml
+#        endpoints:
+#            collection1:
+#                core: collection1

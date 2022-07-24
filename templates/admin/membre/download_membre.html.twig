@@ -1,0 +1,57 @@
+{% extends 'base_pdf.html.twig' %}
+
+{% block title %}
+<h1> Liste des membres </h1>
+{% endblock %}
+ {% block body %}
+    <table class="table table-striped table-middle-aligned border=1">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de Naissance</th>
+				<th scope="col">Phone</th>
+                <th scope="col">Adresse</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+			{# 
+			{% if personne.civilite==1 %}
+			{% set civ = "Monsieur" %}
+			{% elseif personne.civilite==2 %}
+			{% set civ = "Madame" %}
+			{% else %}
+			{% set civ = "Autre" %}
+			{% endif %}
+           #}
+		 
+                <td>{{personne.nom}}</td>
+                <td>{{personne.prenom}}</td>
+                <td>{{ personne.dateNaissance |date('d-m-Y')}}</td>
+				<td>{{ personne.phonePersonnel}}</td>
+                <td>{{ personne.adresse}}</td>
+				 
+				 
+				{# <img src="/images/properties/{{personne.imageName}}" 
+				
+				{% if personne.imageName%}
+				<img src="{{vich_uploader_asset(personne,'imageFile')|imagine_filter('thumb')}}" alt="card img" style="width:10%; height:auto;">
+				 {% endif %}
+				 #}
+			
+            </tr>
+			
+    
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">Aucun Membre found</td>
+           </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+ {% endblock %}

@@ -1,0 +1,270 @@
+{% extends 'base_pdf.html.twig' %}
+
+{% block title %}
+<h1> Liste des membres </h1>
+{% endblock %}
+ {% block body %}
+   
+<div class="alert alert-secondary" ><h3> Informations personnelles de {{personne.nom}} {{personne.prenom}} </h3></div>	
+ <table class="table  table-middle-aligned border=2" >
+ 
+      {# 
+
+const SEXE=[2=>'',0=>'M',1=>'F'];
+	const CIVILITE=[1=>'M',2=>'MME',3=>'MLLE',4=>'FR',5=>'SR',6=>'PAST'];
+	const STATUTMAT=[1=>'Célibataire',2=>'Marié(e)',3=>'veuf(ve)',4=>'divorcé',5=>'séparé',6=>'autre'];
+	const MOTIF_ENTREE=[1=>'baptême ',2=>'transfert',3=>'profession de foi',4=>'autre'];
+	
+#}
+
+            
+
+            
+            
+          {% if personne.statutMat==1 %}
+			{% set statut = "Célibataire" %}
+			{% elseif personne.statutMat==2 %}
+			{% set statut = "Marié" %}
+            {% elseif personne.statutMat==3 %}
+			{% set statut = "veuf(ve)" %}
+            {% elseif personne.statutMat==4 %}
+			{% set statut = "divorcé" %}
+            {% elseif personne.statutMat==5 %}
+			{% set statut = "séparé" %}
+			{% else %}
+			{% set statut = "autre" %}
+		  {% endif %}
+
+
+
+          {% if personne.sexe==1 %}
+			{% set sex = "F" %}
+			{% elseif personne.sexe==0 %}
+			{% set sex = "M" %}
+			{% else %}
+			{% set sex = "" %}
+		  {% endif %}
+
+
+       {% if personne.civilite==1 %}
+			{% set civ = "Monsieur" %}
+			{% elseif personne.civilite==2 %}
+			{% set civ = "Madame" %}
+			{% else %}
+			{% set civ = "Autre" %}
+			{% endif %}
+
+
+        <tbody>        
+            <tr>			 
+                <td ><strong>Nom</strong></td>
+                <td>{{personne.nom}}</td>
+                 <td><strong>Prenom</strong></td>
+                <td>{{personne.prenom}}</td>
+                              
+	        </tr>
+			
+             <tr>			 
+                <td><strong>Sexe</strong></td>
+                <td>{{sex}}</td>
+				 <td><strong>Civilite</strong></td>
+                <td>{{civ}}</td>
+	        </tr>
+			
+             <tr>			 
+                <td><strong>Datee de Naissance</strong>></td>
+                <td>{{personne.dateNaissance |date('d-m-Y')}}</td>
+				 <td><strong>Lieu de Naissance</strong></td>
+                <td>{{personne.lieuNaissance}}</td>
+	        </tr>
+			
+            <tr>			 
+                <td><strong>Nationalite</strong></td>
+                <td>{{personne.nationalite}}</td>
+				 <td><strong>Profession</strong></td>
+                <td>{{ personne.profession }}</td>
+	        </tr>
+
+
+             <tr>			 
+                <td><strong>Statut Mat</strong></td>
+                <td>{{statut}}</td>
+				 <td><strong>Adresse</strong></td>
+                <td>{{ personne.adresse}}</td>
+	        </tr>
+
+            <tr>			 
+                <td><strong>Code Postal</strong></td>
+                <td>{{personne.codePostal}}</td>
+				 <td><strong>Ville</strong></td>
+                <td>{{personne.ville}}</td>
+	        </tr>
+
+
+               <tr>			 
+                <td><strong>Phone Domicile</strong></td>
+                <td>{{ personne.phoneHome}}</td>
+				 <td><strong>Phone Personnel</strong></td>
+                <td>{{ personne.phonePersonnel }}</td>
+	          </tr>
+
+
+               <tr>			 
+                <td><strong>Phone Travail</strong></td>
+                <td>{{ personne.phoneTravail }}</td>
+				 <td><strong>Email</strong></td>
+                <td>{{ personne.email }}</td>
+	          </tr>
+
+                <tr>			 
+                <td><strong>infos Add</strong></td>
+                <td colspan="3">{{ personne.infosAdd}}</td>
+				
+	          </tr>
+
+
+           
+
+
+        </tbody>
+    </table>
+    <p></p>
+<div class="alert alert-secondary" ><h3> Bapteme informations</h3></div>
+
+    <table class="table table-striped table-middle-aligned">
+          <thead>
+          <tr>
+              <th scope="col">Date Baptême (J/M/A)</th>
+              <th scope="col">Lieu de baptême</th>
+              <th scope="col">Baptisé par</th>
+              
+          </tr>
+          </thead>
+          <tbody>
+          {% for bapteme in baptemes %}
+              <tr>
+                  <td>{{ bapteme.dateBapteme |date('d-m-Y')}}</td>
+                  <td>{{bapteme.lieu}}</td>
+                  <td>{{ bapteme.baptiserPar}}</td>
+              </tr>
+          {% else %}
+              <tr>
+                  <td colspan="4" align="center">Aucun bapteme found</td>
+              </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+
+<div class="alert alert-secondary" ><h3> Integration information</h3></div>      
+        <table class="table table-middle-aligned border=2">
+            <thead>
+            <tr>
+                <th scope="col">date d'entrée (j/m/a)</th>
+                <th scope="col">Infos</th>
+                <th scope="col">Date sortie (j/m/a)</th>
+                <th scope="col">Motif</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            {% for integration in integrations %}
+
+             {% if integration.infosIn==1 %}
+			{% set motif1 = "baptême" %}
+			{% elseif integration.infosIn==2 %}
+			{% set motif1 = "transfert" %}
+            {% elseif integration.infosIn==3 %}
+			{% set motif1 = "profession" %}
+           
+			{% else %}
+			{% set motif1 = "autre" %}
+		  {% endif %}
+
+                <tr>
+
+                    <td>{{ integration.dateIn |date('d-m-Y')}}</td>
+                    <td>{{motif1}}</td>
+                    <td>{{ integration.dateOut |date('d-m-Y')}}</td>
+                    <td>{{ integration.infosOut}}</td>
+
+                </tr>
+
+
+            {% else %}
+                <tr>
+                    <td colspan="4" align="center">Aucune integration found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+<div class="alert alert-secondary" ><h3> Evénements </h3></div>  
+ <table class="table table-middle-aligned">
+            <thead>
+            <tr>
+                <th scope="col"> Date(j/m/a)</th>
+                <th scope="col">Type d'événement</th>
+
+                <th scope="col">Lieu</th>
+                <th scope="col">Infos add</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            {% for evenement in evenements %}
+                <tr>
+                    <td>{{ evenement.eventDate |date('d-m-Y')}}</td>
+                    <td>{{evenement.eventType}}</td>
+                    <td>{{ evenement.eventLieu}}</td>
+                    <td>{{ evenement.eventInfos}}</td>
+                </tr>
+
+
+            {% else %}
+                <tr>
+                    <td colspan="4" align="center">Aucun evenement found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+
+
+
+
+{#
+
+    <table class="table table-striped table-middle-aligned border=1">
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de Naissance</th>
+				<th scope="col">Phone</th>
+                <th scope="col">Adresse</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td>{{personne.nom}}</td>
+                <td>{{personne.prenom}}</td>
+                <td>{{ personne.dateNaissance |date('d-m-Y')}}</td>
+				<td>{{ personne.phonePersonnel}}</td>
+                <td>{{ personne.adresse}}</td>			
+            </tr>
+			
+    
+        {% else %}
+            <tr>
+                <td colspan="4" align="center">Aucun Membre found</td>
+           </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    #}
+ {% endblock %}

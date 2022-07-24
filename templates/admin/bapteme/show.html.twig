@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="row">
+            <div class="col">
+                 <div class="alert alert-secondary" > {{form_errors(form.dateBapteme)}} {{form_errors(form.lieu)}} {{form_errors(form.baptiserPar)}}</div>
+          
+            </div>
+        </div>
+       
+ <table class="table table-striped table-middle-aligned table-sm">       
+        <tbody>        
+            <tr>			 
+                <td>{{ form_label(form.dateBapteme) }}</td>
+                <td>{{ form_widget(form.dateBapteme)}}</td>
+                 <td>{{ form_label(form.lieu) }}</td>
+                <td>{{ form_widget(form.lieu) }}</td>    
+                 <td>{{ form_label(form.baptiserPar) }}</td>
+                <td>{{ form_widget(form.baptiserPar)}}</td>    
+	        </tr>
+
+        </tbody>
+    </table>
+ 
+
+{{ form_end(form) }}
+  
+{% endblock %}
+
+{% block sidebar %}
+<p>
+  {{parent()}}
+</p>
+ {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+    <p>
+    <h4>Ajouter Bapteme </h4>
+    </p>
+
+ {{ include('admin/bapteme/form1.html.twig') }}
+
+    <div></div>
+ 
+{% endblock %}
+
+{% block sidebar %}
+{{parent()}}
+{#
+<p>
+   <div class="section actions">
+        <a href="{{ path('admin_membre_new') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> Nouveau membre
+        </a>
+    </div>
+</p>
+#}
+ {% endblock %}

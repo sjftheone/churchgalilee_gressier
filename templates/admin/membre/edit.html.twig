@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+{#  #}
+<p>
+ <h4>Modifier infos de {{personne.Nom}} {{personne.Prenom}} </h4>
+</p>
+<div class="container">
+    {{ include('admin/membre/_form.html.twig',{form: form, 'button_label': 'Update'}) }}
+    {{ form_end(form) }}
+    <a href="{{ path('admin_membre_index') }}">back to list</a>
+</div>
+
+{#
+	<div class="section actions">
+        {{ include('admin/membre/_delete_form.html.twig', {personne: personne}, with_context = false) }}
+    </div>
+#}
+ <div></div>
+
+
+<!-- Button trigger modal -->
+
+
+{% endblock %}
+
+{% block sidebar %}
+<p></p>
+    <div class="section actions"  >
+
+{#
+        <button type="button" class="btn btn-dark" href="{{ path('new_ticket', {'id': voitures.id},{'parking': voitures.parking.id}) }}" data-toggle="modal" data-target="#createmodel" data-whatever="{{ voitures.id }}">ticket</button>
+        <a href="{{ path('admin_bapteme_new',{id: personne.id})}}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> Enregistrer Baptême
+        </a>
+
+<a  class="btn btn-primary" data-toggle="modal" data-target="#connexion" href="{{ path('security_login')}}"> Connexion</a>
+
+        <button type="button" class="btn btn-dark" href="{{ path('admin_bapteme_new',{id: personne.id})}}" data-toggle="modal" data-target="#createmodel" data-whatever="{{ personne.id }}">Enregistrer Baptême</button>
+#}
+
+        <a href="{{ path('admin_bapteme_new',{id: personne.id})}}" class="btn btn-lg btn-block btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> Enregistrer baptemesss
+        </a>
+
+
+
+        <a href="{{ path('admin_integration_new',{id: personne.id})}}" class="btn btn-lg btn-block btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> Enregistrer intégration
+        </a>
+
+        <a href="{{ path('admin_evenement_new',{id: personne.id})}}" class="btn btn-lg btn-block btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> Enregistrer événement
+         </a>
+    </div>
+    
+{{parent()}}
+
+ {% endblock %}

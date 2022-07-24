@@ -1,0 +1,59 @@
+{#
+    By default, forms enable client-side validation. This means that you can't
+    test the server-side validation errors from the browser. To temporarily
+    disable this validation, add the 'novalidate' attribute:
+
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+#}
+
+{% if show_confirmation|default(false) %}
+    {% set attr = {'data-confirmation': 'true'} %}
+    {{ include('blog/_delete_post_confirmation.html.twig') }}
+{% endif %}
+
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+<div class="row">
+            <div class="col">
+                 <div class="alert alert-secondary" > {{form_errors(form.title)}} {{form_errors(form.summary)}} {{form_errors(form.content)}} {{form_errors(form.imageFile)}}</div>
+            </div>
+        </div>
+
+<table class="table table-striped table-middle-aligned table-sm">
+       
+        <tbody>        
+            <tr>			 
+                <td>{{ form_label(form.title) }}</td>
+                <td>{{ form_widget(form.title)}}</td>            
+	        </tr> 
+            <tr>			 
+                <td>{{ form_label(form.summary) }}</td>
+                <td>{{ form_widget(form.summary)}}</td>            
+	        </tr>
+
+            <tr>			 
+                <td>{{ form_label(form.content) }}</td>
+                <td>{{ form_widget(form.content)}}</td>            
+	        </tr>
+
+             <tr>			 
+                <td>{{ form_label(form.imageFile) }}</td>
+                <td>{{ form_widget(form.imageFile)}}</td>            
+	        </tr>
+
+             <tr>			 
+                <td>{{ form_label(form.publishedAt) }}</td>
+                <td>{{ form_widget(form.publishedAt)}}</td>            
+	        </tr>
+
+	</table>
+
+    <button type="submit" class="{{ button_css|default("btn btn-primary") }}">
+        <i class="fa fa-save" aria-hidden="true"></i> {{ button_label|default('create post'|trans) }}
+    </button>
+
+    {% if include_back_to_home_link|default(false) %}
+        <a href="{{ path('admin_post_index') }}" class="btn btn-link">
+            <i class="fa fa-list-alt" aria-hidden="true"></i> {{ 'back to list'|trans }}
+        </a>
+    {% endif %}
+{{ form_end(form) }}

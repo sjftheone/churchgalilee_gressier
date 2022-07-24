@@ -1,0 +1,10 @@
+[2022-04-15 06:29:40.305] [main] [info] window#load: attempt to load window (id: 1)
+[2022-04-15 06:29:40.322] [main] [info] update#setState idle
+[2022-04-15 06:29:40.415] [main] [info] ExtensionHostStarterWorker created
+[2022-04-15 06:29:41.635] [main] [info] window#load: window reported ready (id: 1)
+[2022-04-15 06:29:42.230] [main] [info] Starting extension host with pid 16532 (fork() took 18 ms).
+[2022-04-15 06:29:42.231] [main] [info] ExtensionHostStarterWorker.start() took 22 ms.
+[2022-04-15 06:30:10.325] [main] [info] update#setState checking for updates
+[2022-04-15 06:30:10.521] [main] [info] update#setState idle
+[2022-04-15 06:30:35.126] [main] [info] Waiting for extension host with pid 16532 to exit.
+[2022-04-15 06:30:35.149] [main] [info] Extension host with pid 16532 exited with code: 0, signal: null.

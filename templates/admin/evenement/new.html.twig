@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+{% for message in app.flashes('success')%}
+  <div class="alert alert-success">
+   {{message}}
+  </div>
+ {% endfor %}
+<p>
+ <h3>Evenement Création </h3>
+</p>
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="row">
+        <div class="col">
+            <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form.eventDate) }}</p>
+        </div>
+        <div class="col" id="some-custom-id"> {{ form_widget(form.eventDate) }}</div>
+
+        <div class="col">
+            <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form.eventType) }} </p>
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_widget(form.eventType) }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <p class="font-weight-bold pt-2 rounded w-100">{{ form_label(form.eventLieu) }} </p>
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_widget(form.eventLieu) }}
+        </div>
+
+        <div class="col">
+            <p class="font-weight-bold pt-2 rounded w-100"> {{ form_label(form.eventInfos) }}</p>
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_widget(form.eventInfos) }}
+        </div>
+
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save" aria-hidden="true"></i> Save changes
+    </button>
+
+{{ form_end(form) }}
+
+
+    <div></div>
+ 
+{% endblock %}
+
+{% block sidebar %}
+{#
+<p>
+   <div class="section actions">
+        <a href="{{ path('admin_membre_new') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> Nouveau membre
+        </a>
+    </div>
+</p>
+#}
+ {% endblock %}

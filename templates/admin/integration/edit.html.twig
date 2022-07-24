@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+{% for message in app.flashes('success')%}
+  <div class="alert alert-success">
+   {{message}}
+  </div>
+ {% endfor %}
+<p>
+ <h3>Modifier Integration </h3>
+</p>
+{{ include('admin/integration/_form.html.twig') }}		
+		
+	
+
+ <div></div>
+{% endblock %}
+
+{% block sidebar %}
+{{parent()}}
+ {% endblock %}

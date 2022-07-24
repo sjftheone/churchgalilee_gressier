@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+<p>
+ <h5>Nouveau Membre </h5>
+</p>
+
+    {{ include('admin/membre/_form.html.twig',{form: form, 'button_label': 'Save'}) }}
+
+{% endblock %}
+
+{% block sidebar %}
+{{parent()}}
+{#
+<p>
+   <div class="section actions">
+        <a href="{{ path('admin_membre_new') }}" class="btn btn-lg btn-block btn-success">
+            <i class="fa fa-plus" aria-hidden="true"></i> Nouveau membre
+        </a>
+    </div>
+</p>
+#}
+ {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'nos_origines_show' %}
+{% block Carousel %}
+{% endblock %}
+
+{% block main %}
+<p>
+ <h3>Integration Création </h3>
+</p>
+{{ include('admin/integration/_form.html.twig') }}	
+   
+    <div></div>
+ 
+{% endblock %}
+
+{% block sidebar %}
+{{parent()}}
+
+ {% endblock %}
